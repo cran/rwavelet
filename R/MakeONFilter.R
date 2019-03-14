@@ -213,6 +213,13 @@ MakeONFilter <- function(Type, Par) {
     f[l:(2 * l - 1)] <- g
     f[1:l - 1] <- rev(g[2:l])
   }
-  f <- f/normvec(f)
+  # f <- f/normvec(f)
+  f <- f/norm(as.matrix(f), "F")
   f
 }
+
+# Copyright (c) 1993-5. Jonathan Buckheit and David Donoho
+
+# Part of WaveLab Version 802 Built Sunday, October 3, 1999 8:52:27 AM This
+# is Copyrighted Material For Copying permissions see COPYING.m Comments?
+# e-mail wavelab@stat.stanford.edu

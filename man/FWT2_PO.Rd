@@ -2,7 +2,7 @@
 % Please edit documentation in R/FWT2_PO.R
 \name{FWT2_PO}
 \alias{FWT2_PO}
-\title{2-d tensor wavelet transform (periodized, orthogonal).}
+\title{2-d MRA wavelet transform (periodized, orthogonal).}
 \usage{
 FWT2_PO(x, L, qmf)
 }
@@ -19,12 +19,13 @@ FWT2_PO(x, L, qmf)
 \description{
 A two-dimensional Wavelet Transform is computed for the array x.
 \code{qmf} filter may be obtained from \code{\link{MakeONFilter}}.
-To reconstruct, use  \code{\link{IWT2_PO}}.
+To reconstruct, use \code{\link{IWT2_PO}}.
 }
 \examples{
-\dontrun{
-wc <- FWT2_PO(x,L,qmf)
-}
+qmf <- MakeONFilter('Daubechies', 10)
+L <- 3
+x <- matrix(rnorm(128^2),ncol=128)
+wc <- FWT2_PO(x, L, qmf)
 }
 \seealso{
 \code{\link{IWT2_PO}}, \code{\link{MakeONFilter}}.

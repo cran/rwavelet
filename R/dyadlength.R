@@ -17,7 +17,11 @@ dyadlength <- function(x) {
   }
   J <- ceiling(log(n)/log(2))
   if (2^J != n) {
-    print("Warning in dyadlength: n != 2^J")
+    warning("n != 2^J")
   }
   return(list(x = n, y = J))
 }
+
+# Part of Wavelab Version 850 Built Tue Jan 3 13:20:40 EST 2006 This is
+# Copyrighted Material For Copying permissions see COPYING.m Comments? e-mail
+# wavelab@stat.stanford.edu

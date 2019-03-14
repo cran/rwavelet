@@ -10,9 +10,11 @@
 #' @param qmf quadrature mirror filter.
 #' @return \code{x} 2-d signal reconstructed from wc.
 #' @examples
-#' \dontrun{
-#' x <- IWT2_PO(wc,L,qmf)
-#' }
+#' qmf <- MakeONFilter('Daubechies', 10)
+#' L <- 3
+#' x <- matrix(rnorm(128^2),ncol=128)
+#' wc <- FWT2_PO(x, L, qmf)
+#' xr <- IWT2_PO(wc,L,qmf)
 #' @seealso \code{\link{FWT2_PO}}, \code{\link{MakeONFilter}}.
 
 IWT2_PO <- function(wc, L, qmf) {
@@ -35,3 +37,9 @@ IWT2_PO <- function(wc, L, qmf) {
   }
   return(x)
 }
+
+# Copyright (c) 1993. David L. Donoho
+
+# Part of Wavelab Version 850 Built Tue Jan 3 13:20:40 EST 2006 This is
+# Copyrighted Material For Copying permissions see COPYING.m Comments? e-mail
+# wavelab@stat.stanford.edu

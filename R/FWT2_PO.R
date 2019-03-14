@@ -1,8 +1,8 @@
-#' 2-d tensor wavelet transform (periodized, orthogonal).
+#' 2-d MRA wavelet transform (periodized, orthogonal).
 #'
 #' A two-dimensional Wavelet Transform is computed for the array x.
 #' \code{qmf} filter may be obtained from \code{\link{MakeONFilter}}.
-#' To reconstruct, use  \code{\link{IWT2_PO}}.
+#' To reconstruct, use \code{\link{IWT2_PO}}.
 #'
 #' @export FWT2_PO
 #' @param x 2-d image (n by n array, n dyadic).
@@ -10,9 +10,10 @@
 #' @param qmf quadrature mirror filter.
 #' @return \code{wc} 2-d wavelet transform.
 #' @examples
-#' \dontrun{
-#' wc <- FWT2_PO(x,L,qmf)
-#' }
+#' qmf <- MakeONFilter('Daubechies', 10)
+#' L <- 3
+#' x <- matrix(rnorm(128^2),ncol=128)
+#' wc <- FWT2_PO(x, L, qmf)
 #' @seealso \code{\link{IWT2_PO}}, \code{\link{MakeONFilter}}.
 
 FWT2_PO <- function(x, L, qmf) {
@@ -38,3 +39,9 @@ FWT2_PO <- function(x, L, qmf) {
   }
   return(wc)
 }
+
+# Copyright (c) 1993. David L. Donoho
+
+# Part of Wavelab Version 850 Built Tue Jan 3 13:20:40 EST 2006 This is
+# Copyrighted Material For Copying permissions see COPYING.m Comments? e-mail
+# wavelab@stat.stanford.edu
