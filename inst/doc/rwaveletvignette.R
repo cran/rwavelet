@@ -87,28 +87,39 @@ plot(t, fest_bs, type='l', lwd=1.4, col='red', xlab="t", ylab="hat_f(t)",
 matlines(t, f, type='l', lty=2)
 
 ## ---- echo=TRUE, message=FALSE-------------------------------------------
-library(imager)
 name <- '../inst/extdata/lena.png'
-f <- load.image(name)
-plot(f, axes=F, interpolate=F, xlab="", ylab="")
+if (requireNamespace("imager", quietly = TRUE)) {
+      f <- imager::load.image(name)
+      plot(f, axes=F, interpolate=F, xlab="", ylab="")
+   } else {
+      ## use e.g. image from graphics package
+   }
 
 ## ---- echo=TRUE, message=FALSE-------------------------------------------
 ssig <- sd(f)
 sdnoise <- ssig/SNR
 y <- f + rnorm(ncol(f)*nrow(f), mean=0, sd=sdnoise)
 snrin <- SNR(f,y)
-plot(y, axes=F, interpolate=F, xlab="", ylab="",
+if (requireNamespace("imager", quietly = TRUE)) {
+      plot(y, axes=F, interpolate=F, xlab="", ylab="",
      main=format(round(snrin,2), nsmall = 2))
+   } else {
+      ## use e.g. image from graphics package
+   }
 
 ## ---- echo=TRUE, message=FALSE-------------------------------------------
-wc <- FWT2_PO(as.array(squeeze(y)), j0, qmf)
+wc <- FWT2_PO(as.array(imager::squeeze(y)), j0, qmf)
 wcb <- wc
 thr <- 3*sdnoise
 aT <- wc*(abs(wc)>thr)
 fest <- IWT2_PO(aT, j0, qmf)
 snrout <- SNR(f, fest)
-plot(as.cimg(fest), axes=FALSE, xlab="", ylab="",
+if (requireNamespace("imager", quietly = TRUE)) {
+      plot(imager::as.cimg(fest), axes=FALSE, xlab="", ylab="",
      main=format(round(snrout,2), nsmall=2))
+   } else {
+      ## use e.g. image from graphics package
+   }
 
 ## ---- eval=FALSE---------------------------------------------------------
 #  library(misc3d)
